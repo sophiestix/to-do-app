@@ -6,18 +6,17 @@
   <link href='styles/main.css' rel='stylesheet' type="text/css">
 </head>
 <body ng-app="todoListApp">
-   
-  <div ng-controller="mainCtrl" class="list">
-    <h1 ng-click="helloWorld()">My TODOs</h1>
-    <div ng-repeat="todo in todos">
+   <h1 ng-click="helloWorld()">My TODOs</h1>
+   <div ng-controller="mainCtrl" class="list">
+    <div class="item" ng-class="{'editing-item': editing}" ng-repeat="todo in todos">
 	    <input ng-model="todo.completed" type="checkbox"/>
-	    <label ng-hide="editing" class="editing-label" ng-click="helloWorld()">
+	    <label ng-hide="editing" ng-click="helloWorld()">
 	      {{todo.name}}</label>
-	    <input ng-show="editing" ng-model="todo.name" class="editing-label" type="text"/>
+	    <input ng-blur="editing = false;" ng-show="editing" ng-model="todo.name" class="editing-label" type="text"/>
 	    <div class="actions">
 	      <a href="" ng-click=" editing = !editing">Edit</a>
 	      <a href="" ng-click="helloWorld()">Save</a>
-	      <a href="" class="Delete">delete</a>
+	      <a href="" class="delete">delete</a>
 	    </div>
     </div>
     {{todos}}
