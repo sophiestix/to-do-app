@@ -13,6 +13,15 @@ angular.module("todoListApp", [])
 		$scope.todos = response.data;
 	});
 
+	$scope.deleteTodo = function(todo, $index) {
+		dataService.deleteTodo(todo);
+		$scope.todos.splice($index, 1);
+	};
+
+	$scope.saveTodo = function(todo) {
+		dataService.saveTodo(todo);
+	};
+
 })
 
 .service('dataService', function($http) {
@@ -24,6 +33,16 @@ angular.module("todoListApp", [])
 	this.getTodos = function(callback) {
 		$http.get('./mock/todos.json')
 		.then(callback)
+	};
+
+	this.deleteTodo = function(todo) {
+		console.log("The " + todo.name + " has been deleted!")
+		// other logic
+	};
+
+	this.saveTodo = function(todo) {
+		console.log("The " + todo.name + " has been saved!")
+		// other logic
 	};
 
 });
